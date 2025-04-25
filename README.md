@@ -1,24 +1,65 @@
 # lair-postgis
-[![PyPI version](https://badge.fury.io/py/lair-postgis.svg)](https://badge.fury.io/py/lair-postgis) [![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen)](https://milleniumbrasil.github.io/lair-postgis/) [![GitHub Actions CI](https://github.com/milleniumbrasil/lair-postgis/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/milleniumbrasil/lair-postgis/actions)
-CLI tool to scaffold a PostGIS project with Docker, including init scripts.
 
-## Prerequisites
-- Docker (https://www.docker.com/get-started)
-- CMake (e.g., `brew install cmake` on macOS or `sudo apt-get install cmake` on Debian/Ubuntu)
+[![PyPI version](https://badge.fury.io/py/lair-postgis.svg)](https://badge.fury.io/py/lair-postgis) [![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen)](https://milleniumbrasil.github.io/lair-postgis/) [![Build Binaries](https://img.shields.io/github/v/release/milleniumbrasil/lair-postgis?label=binaries)](https://github.com/milleniumbrasil/lair-postgis/releases) [![GitHub Actions CI](https://github.com/milleniumbrasil/lair-postgis/actions/workflows/build-binaries.yml/badge.svg)](https://github.com/milleniumbrasil/lair-postgis/actions)
 
-## Installation
+Ferramenta CLI para scaffolding de projetos PostGIS com Docker e scripts de inicialização.
+
+## Instalação via pip
+
 ```bash
-poetry install
+pip install lair-postgis
 ```
 
-## Usage
+Após a instalação, execute:
+
 ```bash
-lair-postgis --in path/to/lair.sql [--out path/to/install]
+lair-postgis --help
 ```
 
-## Next Steps
-After scaffolding, run:
+## Binaries Standalone
+
+Para usuários sem Python instalado, disponibilizamos binários nos GitHub Releases:
+
+- **Windows** (`.exe`): https://github.com/milleniumbrasil/lair-postgis/releases/latest/download/lair-postgis.exe
+- **macOS/Linux**: https://github.com/milleniumbrasil/lair-postgis/releases/latest/download/lair-postgis
+
+Basta baixar o executável e executá-lo diretamente:
+
 ```bash
-cd path/to/install
-docker compose down -v && docker compose up --build -d
+./lair-postgis --help
 ```
+
+## Build Local
+
+Pré-requisitos:
+
+```bash
+pip install pyinstaller
+```
+
+Construir localmente:
+
+```bash
+chmod +x scripts/build-executables.sh
+./scripts/build-executables.sh
+```
+
+O binário será gerado em `dist/lair-postgis` (macOS/Linux) ou `dist/lair-postgis.exe` (Windows).
+
+## Uso
+
+```bash
+lair-postgis --in caminho/para/lair.sql [--out caminho/para/install]
+```
+
+## Documentação
+
+https://milleniumbrasil.github.io/lair-postgis/
+
+## Contribuição
+
+Contribuições são bem-vindas! Faça um fork e envie pull requests.
+
+## Licença
+
+MIT © milleniumbrasil

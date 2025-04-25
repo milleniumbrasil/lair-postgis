@@ -6,7 +6,8 @@
 /py_env
 *.db
 .idea
-build
 dist
+build
+/.build-env
 *.egg-info
 *.iml
