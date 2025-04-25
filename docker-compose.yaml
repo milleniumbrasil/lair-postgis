@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  db:
+    build: .
+    container_name: pg-postgis-lair
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init-db:/docker-entrypoint-initdb.d
+      - ./init-db/10-lair.sql:/docker-entrypoint-initdb.d/lair.sql:ro
