@@ -1,6 +1,6 @@
- # Examples
+# Examples
 
- ## Basic Example
+## Basic Example
 
  ```bash
  lair-postgis --in ./schema/lair.sql --out ./deploy
@@ -17,7 +17,7 @@
      └── 10-lair.sql
  ```
 
- ## After Scaffold
+## After Scaffold
 
  To run the database:
 

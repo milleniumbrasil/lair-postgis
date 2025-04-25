@@ -3,10 +3,7 @@ site_url: https://milleniumbrasil.github.io/lair-postgis/
 repo_name: milleniumbrasil/lair-postgis
 repo_url: https://github.com/milleniumbrasil/lair-postgis
 nav:
-  - Home: index.md
-  - Usage: usage.md
-  - CLI Reference: cli.md
-  - Examples: examples.md
+  - Início: index.md
 
 theme:
   name: material
