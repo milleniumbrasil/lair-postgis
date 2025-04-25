@@ -11,6 +11,9 @@ source "$BUILD_ENV/bin/activate"
 # Attempt install; if offline or protected env, skip and proceed
 pip install --break-system-packages --upgrade pip setuptools wheel pyinstaller || \
 echo "⚠️  Aviso: falha ao instalar dependências; prosseguindo com o ambiente existente"
-# Build the standalone executable
-python -m PyInstaller --clean --onefile --name lair-postgis src/lair_postgis/cli.py
+## Build the standalone executable using venv PyInstaller, fallback to host if needed
+if ! python -m PyInstaller --clean --onefile --name lair-postgis src/lair_postgis/cli.py; then
+    echo "⚠️  PyInstaller não encontrado no venv; tentando 'pyinstaller' do sistema"
+    pyinstaller --clean --onefile --name lair-postgis src/lair_postgis/cli.py
+fi
 deactivate
