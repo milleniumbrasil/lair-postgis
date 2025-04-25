@@ -29,6 +29,7 @@ mkdocs-material = "*"
 pyright = "*"
 codespell = "*"
 commitizen = "*"
+mkdocs-versioning = "*"
 
 [tool.poetry.scripts]
 lair-postgis = "lair_postgis.cli:main"

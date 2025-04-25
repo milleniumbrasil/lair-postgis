@@ -1,0 +1,27 @@
+site_name: lair-postgis
+site_url: https://seu-usuario.github.io/lair-postgis/
+repo_name: seu-usuario/lair-postgis
+repo_url: https://github.com/seu-usuario/lair-postgis
+nav:
+  - Home: index.md
+  - Usage: usage.md
+  - CLI Reference: cli.md
+  - Examples: examples.md
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - versioning
+
+extra_css:
+  - css/extra.css
+
+extra_javascript:
+  - js/custom.js
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
