@@ -20,8 +20,6 @@ packages = [{ include = "lair_postgis", from = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-# Pin picologging to latest available version on PyPI
-picologging = "^0.9.3"
 
 [tool.poetry.group.dev.dependencies]
 # Development dependencies
