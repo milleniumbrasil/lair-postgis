@@ -1,14 +1,16 @@
 # lair-postgis
-
-[![PyPI version](https://badge.fury.io/py/lair-postgis.svg)](https://badge.fury.io/py/lair-postgis) [![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen)](https://milleniumbrasil.github.io/lair-postgis/) [![Build Binaries](https://img.shields.io/github/v/release/milleniumbrasil/lair-postgis?label=binaries)](https://github.com/milleniumbrasil/lair-postgis/releases) [![GitHub Actions CI](https://github.com/milleniumbrasil/lair-postgis/actions/workflows/build-binaries.yml/badge.svg)](https://github.com/milleniumbrasil/lair-postgis/actions)
+ 
+[![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen)](https://milleniumbrasil.github.io/lair-postgis/) [![Build Binaries](https://img.shields.io/github/v/release/milleniumbrasil/lair-postgis?label=binaries)](https://github.com/milleniumbrasil/lair-postgis/releases) [![GitHub Actions CI](https://github.com/milleniumbrasil/lair-postgis/actions/workflows/build-binaries.yml/badge.svg)](https://github.com/milleniumbrasil/lair-postgis/actions)
 
 Ferramenta CLI para scaffolding de projetos PostGIS com Docker e scripts de inicialização.
 
-## Instalação via pip
+## Instalação via Python (usuários avançados)
 
 ```bash
 pip install lair-postgis
 ```
+
+> Esta opção é indicada para desenvolvedores ou usuários que já possuem o ambiente Python configurado.
 
 Após a instalação, execute:
 
@@ -63,3 +65,44 @@ Contribuições são bem-vindas! Faça um fork e envie pull requests.
 ## Licença
 
 MIT © milleniumbrasil
+
+## Executando binários não assinados
+
+### Windows
+
+Ao tentar executar `lair-postgis.exe`, o Windows pode exibir um alerta de segurança do SmartScreen.
+
+#### Como prosseguir:
+1. Clique em **"Mais informações"**.
+2. Clique em **"Executar assim mesmo"**.
+3. O aplicativo será iniciado normalmente.
+
+Essa mensagem ocorre porque o binário não é assinado digitalmente. Isso **não indica que o programa é malicioso**.
+
+### macOS
+
+O sistema pode mostrar:
+
+> “lair-postgis” não pode ser aberto porque o desenvolvedor não pode ser verificado.
+
+#### Como permitir a execução:
+```bash
+xattr -d com.apple.quarantine ./lair-postgis
+chmod +x ./lair-postgis
+sudo mv ./lair-postgis /usr/local/bin/
+```
+
+Agora, você pode executar normalmente com:
+```bash
+lair-postgis --help
+```
+
+### Linux
+
+```bash
+chmod +x ./lair-postgis
+./lair-postgis --help
+
+# Para tornar o comando global:
+sudo mv ./lair-postgis /usr/local/bin/
+``` 
