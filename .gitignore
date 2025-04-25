@@ -7,5 +7,7 @@
 *.db
 .idea
 dist
+build
+/.build-env
 *.egg-info
 *.iml

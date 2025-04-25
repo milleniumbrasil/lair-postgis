@@ -1,7 +1,14 @@
 #!/bin/bash
 set -e
 # Build standalone executable for lair-postgis using PyInstaller
-# Install PyInstaller via the default Python interpreter
-python -m pip install pyinstaller
-# Invoke PyInstaller as a Python module to ensure correct environment
+# Use isolated virtual environment to avoid system package installation issues
+BUILD_ENV=".build-env"
+if [ ! -d "$BUILD_ENV" ]; then
+    python3 -m venv "$BUILD_ENV"
+fi
+source "$BUILD_ENV/bin/activate"
+# Upgrade pip, setuptools, wheel and install PyInstaller (allow system packages override)
+pip install --break-system-packages --upgrade pip setuptools wheel pyinstaller
+# Build the standalone executable
 python -m PyInstaller --clean --onefile --name lair-postgis src/lair_postgis/cli.py
+deactivate
