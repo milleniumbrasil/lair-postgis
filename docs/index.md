@@ -4,5 +4,5 @@
 
  ---
 
- **Repository:** https://github.com/seu-usuario/lair-postgis  
- **Documentation:** https://seu-usuario.github.io/lair-postgis/  
+ **Repository:** https://github.com/milleniumbrasil/lair-postgis  
+ **Documentation:** https://milleniumbrasil.github.io/lair-postgis/  

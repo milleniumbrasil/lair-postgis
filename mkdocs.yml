@@ -1,7 +1,7 @@
 site_name: lair-postgis
-site_url: https://seu-usuario.github.io/lair-postgis/
-repo_name: seu-usuario/lair-postgis
-repo_url: https://github.com/seu-usuario/lair-postgis
+site_url: https://milleniumbrasil.github.io/lair-postgis/
+repo_name: milleniumbrasil/lair-postgis
+repo_url: https://github.com/milleniumbrasil/lair-postgis
 nav:
   - Home: index.md
   - Usage: usage.md
