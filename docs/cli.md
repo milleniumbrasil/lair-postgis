@@ -1,8 +1,8 @@
- # CLI Reference
+# CLI Reference
 
  This page details the options available in the `lair-postgis` CLI.
 
- ## Options
+## Options
 
  | Flag           | Description                                                   |
  | -------------- | ------------------------------------------------------------- |
@@ -11,7 +11,7 @@
  | `--version`    | Show the version of `lair-postgis`.                           |
  | `-h`, `--help` | Display help information.                                     |
 
- ## Exit Codes
+## Exit Codes
 
  - `0`: Success.
  - `1`: Missing dependency or invalid parameters.

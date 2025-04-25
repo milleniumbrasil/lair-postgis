@@ -1,12 +1,12 @@
- # Usage
+# Usage
 
- ## Installation
+## Installation
 
  ```bash
  pip install lair-postgis
  ```
 
- ## Command Line Interface
+## Command Line Interface
 
  ```bash
  lair-postgis --in path/to/lair.sql [--out path/to/install]
