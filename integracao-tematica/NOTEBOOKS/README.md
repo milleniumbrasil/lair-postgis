@@ -21,53 +21,148 @@ Os scripts estão organizados em sequência numérica, seguindo um fluxo de proc
 
 O script `00_Main.py` executa todos os scripts acima em sequência.
 
-## Requisitos
+## Execução com Docker (Recomendado)
+
+A forma mais simples de executar os scripts é utilizando Docker, que já inclui todas as dependências necessárias.
+
+### Configuração Rápida
+
+Execute o script de configuração para preparar o ambiente:
+
+```bash
+./setup_ambiente.sh
+```
+
+Este script irá:
+1. Verificar se Docker e Docker Compose estão instalados
+2. Criar a estrutura de diretórios necessária
+3. Preparar arquivos de configuração
+4. Construir a imagem Docker
+
+### Pré-requisitos
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Preparação Manual
+
+Se preferir configurar manualmente, crie uma pasta `data` com subpastas para entrada e saída de dados:
+
+```bash
+mkdir -p data/inputs data/outputs data/temp config
+```
+
+Em seguida, copie seus arquivos de entrada para a pasta `data/inputs`.
+
+### Execução
+
+Para iniciar todos os serviços e executar o script principal:
+
+```bash
+docker-compose up
+```
+
+Para executar apenas um script específico:
+
+```bash
+docker-compose run --rm integracao-tematica 01_Download_CAR_estados.py
+```
+
+Para acessar um shell interativo no container:
+
+```bash
+docker-compose run --rm integracao-tematica bash
+```
+
+Para parar todos os serviços:
+
+```bash
+docker-compose down
+```
+
+### Interface de Gerenciamento do Banco de Dados
+
+Um servidor PgAdmin está disponível para gerenciar o banco de dados PostgreSQL:
+
+- URL: http://localhost:5050
+- Login: admin@embrapa.br
+- Senha: admin
+
+Para conectar ao banco de dados PostgreSQL via PgAdmin:
+
+1. Acesse http://localhost:5050
+2. Faça login com as credenciais acima
+3. Clique em "Add New Server"
+4. Na aba "General", digite um nome para o servidor (ex: "LAIR PostGIS")
+5. Na aba "Connection", use os seguintes dados:
+   - Host: postgis
+   - Port: 5432
+   - Database: lair
+   - Username: postgres
+   - Password: postgres
+6. Clique em "Save"
+
+### Acessando o PostgreSQL/PostGIS
+
+O banco de dados está disponível na porta 5438:
+
+- Host: localhost
+- Porta: 5438
+- Banco: lair
+- Usuário: postgres
+- Senha: postgres
+
+## Instalação e Execução Local (Alternativa)
+
+Se preferir executar sem Docker, siga as instruções abaixo.
+
+### Requisitos
 
 - Python 3.8 ou superior
 - GDAL/OGR
 - Tesseract OCR
 
-## Instalação das Dependências
+### Instalação das Dependências
 
-### 1. Instalar Python
+#### 1. Instalar Python
 
 Faça o download e instale o Python 3.8 ou superior do [site oficial](https://www.python.org/downloads/).
 
-### 2. Instalar GDAL/OGR
+#### 2. Instalar GDAL/OGR
 
-#### Windows:
+##### Windows:
 - Baixe as wheel do GDAL de: https://www.lfd.uci.edu/~gohlke/pythonlibs/#gdal
 - Instale com pip: `pip install caminho/para/arquivo.whl`
 
-#### Linux (Ubuntu/Debian):
+##### Linux (Ubuntu/Debian):
 ```bash
 sudo apt update
 sudo apt install python3-gdal gdal-bin libgdal-dev
 ```
 
-#### macOS:
+##### macOS:
 ```bash
 brew install gdal
 ```
 
-### 3. Instalar Tesseract OCR
+#### 3. Instalar Tesseract OCR
 
-#### Windows:
+##### Windows:
 - Baixe o instalador de: https://github.com/UB-Mannheim/tesseract/wiki
 - Adicione o diretório de instalação ao PATH do sistema
 
-#### Linux (Ubuntu/Debian):
+##### Linux (Ubuntu/Debian):
 ```bash
 sudo apt update
 sudo apt install tesseract-ocr
 ```
 
-#### macOS:
+##### macOS:
 ```bash
 brew install tesseract
 ```
 
-### 4. Instalar Dependências Python
+#### 4. Instalar Dependências Python
 
 Na raiz do projeto, execute:
 
@@ -80,17 +175,15 @@ Para instalar também as dependências de desenvolvimento:
 pip install -e ".[dev]"
 ```
 
-## Execução
+### Execução Local
 
-### Executar Todos os Scripts em Sequência
+#### Executar Todos os Scripts em Sequência
 
 ```bash
 python 00_Main.py
 ```
 
-### Executar Scripts Individualmente
-
-Você pode executar cada script individualmente:
+#### Executar Scripts Individualmente
 
 ```bash
 python 01_Download_CAR_estados.py
@@ -104,7 +197,7 @@ python 01_Download_CAR_estados.py
 
 3. Para o script 01, é necessário um email válido para acesso ao sistema SICAR.
 
-4. Para o script 12, é necessário ter um servidor PostgreSQL em execução.
+4. Para o script 12, é necessário ter um servidor PostgreSQL em execução (já incluído no Docker Compose).
 
 5. Certifique-se de ter espaço suficiente em disco, pois os scripts processam e armazenam grandes volumes de dados geoespaciais.
 
