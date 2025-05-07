@@ -1,39 +1,40 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=42.0", "wheel"]
+build-backend = "setuptools.build_meta"
 
-[tool.poetry]
-name = "lair-postgis"
+[tool.setuptools]
+packages = ["integracao_tematica"]
+
+[project]
+name = "integracao-tematica"
 version = "0.1.0"
-description = "CLI tool to scaffold a PostGIS project structure."
-authors = ["Seu Nome <seu.email@exemplo.com>"]
+description = "Scripts para integração temática geoespacial"
+requires-python = ">=3.8"
 readme = "README.md"
-homepage = "https://github.com/seu-usuario/lair-postgis"
-repository = "https://github.com/seu-usuario/lair-postgis"
-keywords = ["cli", "postgis", "docker", "scaffold"]
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent"
+authors = [
+    {name = "Embrapa", email = "exemplo@embrapa.br"}
 ]
-packages = [{ include = "lair_postgis", from = "src" }]
+dependencies = [
+    "numpy",
+    "pandas",
+    "geopandas",
+    "rasterio",
+    "shapely",
+    "gdal",
+    "pyproj",
+    "requests",
+    "matplotlib",
+    "tesseract-ocr",
+    "pytesseract"
+]
 
-[tool.poetry.dependencies]
-python = "^3.8"
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "flake8"
+]
 
-[tool.poetry.group.dev.dependencies]
-# Development dependencies
-ruff = "*"
-mkdocs = "*"
-mkdocs-material = "*"
-pyright = "*"
-codespell = "*"
-commitizen = "*"
-mkdocs-versioning = "*"
-
-[tool.poetry.scripts]
-lair-postgis = "lair_postgis.cli:main"
-
-[tool.commitizen]
-name = "cz_conventional_commits"
-tag_format = "v$version"
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310"]
