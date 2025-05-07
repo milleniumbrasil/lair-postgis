@@ -83,7 +83,7 @@ Essa mensagem ocorre porque o binário não é assinado digitalmente. Isso **nã
 
 O sistema pode mostrar:
 
-> “lair-postgis” não pode ser aberto porque o desenvolvedor não pode ser verificado.
+> "lair-postgis" não pode ser aberto porque o desenvolvedor não pode ser verificado.
 
 #### Como permitir a execução:
 ```bash
@@ -105,4 +105,58 @@ chmod +x ./lair-postgis
 
 # Para tornar o comando global:
 sudo mv ./lair-postgis /usr/local/bin/
-``` 
+```
+
+# Integração Temática Geoespacial
+
+Este projeto contém scripts Python para integração temática geoespacial, convertidos a partir de notebooks Jupyter.
+
+## Requisitos
+
+- Python 3.8 ou superior
+- GDAL/OGR
+- Tesseract OCR
+
+## Instalação
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/seu-usuario/integracao-tematica.git
+cd integracao-tematica
+```
+
+2. Instale as dependências:
+```bash
+pip install -e .
+```
+
+Ou para instalar também as dependências de desenvolvimento:
+```bash
+pip install -e ".[dev]"
+```
+
+## Executando os scripts
+
+Para executar todos os scripts em sequência:
+
+```bash
+python integracao-tematica/NOTEBOOKS/00_Main.py
+```
+
+Alternativamente, é possível executar cada script individualmente:
+
+```bash
+python integracao-tematica/NOTEBOOKS/01_Download_CAR_estados.py
+python integracao-tematica/NOTEBOOKS/02_UsosABC.py
+# ... e assim por diante
+```
+
+## Estrutura do projeto
+
+- **integracao-tematica/NOTEBOOKS**: Contém todos os scripts Python convertidos
+- **00_Main.py**: Script principal que executa todos os outros scripts em sequência
+
+## Notas
+
+- Todos os scripts foram convertidos para funcionar de forma independente, sem dependências de serviços como Google Colab ou Jupyter
+- Ao executar os scripts, será solicitado os caminhos para os diretórios e arquivos necessários 
