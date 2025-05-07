@@ -10,83 +10,32 @@ services:
       - ./data:/data
       - ./config:/app/config
     environment:
-      - POSTGRES_HOST=postgis
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=lair
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      # Variáveis de ambiente para configuração dos scripts
       - INPUT_DIR=/data/inputs
       - OUTPUT_DIR=/data/outputs
       - TEMP_DIR=/data/temp
-    depends_on:
-      postgis:
-        condition: service_healthy
-    networks:
-      - lair-network
-    # Por padrão, executa todos os scripts em sequência
+      # Se precisar conectar a um banco PostgreSQL externo, configure estas variáveis
+      # - POSTGRES_HOST=seu_host_externo
+      # - POSTGRES_PORT=5432
+      # - POSTGRES_DB=seu_banco
+      # - POSTGRES_USER=seu_usuario
+      # - POSTGRES_PASSWORD=sua_senha
+    # O contêiner será automaticamente removido após a conclusão
+    # Uma vez que o script 00_Main.py termine, o contêiner será encerrado
     command: 00_Main.py
-    # Descomente a linha abaixo para iniciar um shell em vez de executar scripts
+    # Para executar apenas em modo interativo, descomente a linha abaixo
     # command: bash
-
-  # Serviço PostgreSQL com extensão PostGIS para dados geoespaciais
-  postgis:
-    image: postgis/postgis:15-3.3
-    environment:
-      - POSTGRES_DB=lair
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - "5438:5432"
-    volumes:
-      - postgis_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - lair-network
-    restart: unless-stopped
-
-  # Interface web para gerenciamento do banco de dados
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@embrapa.br
-      - PGADMIN_DEFAULT_PASSWORD=admin
-    ports:
-      - "5050:80"
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
-    depends_on:
-      - postgis
-    networks:
-      - lair-network
-    restart: unless-stopped
-
-volumes:
-  postgis_data:
-    driver: local
-  pgadmin_data:
-    driver: local
-
-networks:
-  lair-network:
-    driver: bridge
 
 # Exemplos de uso:
 #
-# Para iniciar todos os serviços:
-# docker-compose up -d
+# Para executar todos os scripts em sequência:
+# docker-compose up --abort-on-container-exit
 #
 # Para executar apenas um script específico:
 # docker-compose run --rm integracao-tematica 01_Download_CAR_estados.py
 #
 # Para acessar o shell do container:
 # docker-compose run --rm integracao-tematica bash
-#
-# Para acessar o PgAdmin:
-# http://localhost:5050 (login: admin@embrapa.br, senha: admin)
 #
 # Para parar todos os serviços:
 # docker-compose down 

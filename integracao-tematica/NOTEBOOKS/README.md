@@ -46,7 +46,7 @@ Este script irá:
 
 ### Preparação Manual
 
-Se preferir configurar manualmente, crie uma pasta `data` com subpastas para entrada e saída de dados:
+Se preferir configurar manualmente, crie a estrutura de diretórios necessária:
 
 ```bash
 mkdir -p data/inputs data/outputs data/temp config
@@ -56,10 +56,10 @@ Em seguida, copie seus arquivos de entrada para a pasta `data/inputs`.
 
 ### Execução
 
-Para iniciar todos os serviços e executar o script principal:
+Para executar todos os scripts em sequência (contêiner se desligará automaticamente após a conclusão):
 
 ```bash
-docker-compose up
+docker-compose up --abort-on-container-exit
 ```
 
 Para executar apenas um script específico:
@@ -74,43 +74,26 @@ Para acessar um shell interativo no container:
 docker-compose run --rm integracao-tematica bash
 ```
 
-Para parar todos os serviços:
+### Auto Desligamento do Contêiner
 
-```bash
-docker-compose down
+O contêiner está configurado para se desligar automaticamente após a conclusão dos scripts. Isso significa que:
+
+1. O script `00_Main.py` será executado até o fim
+2. Quando o processamento terminar (com sucesso ou falha), o contêiner encerrará automaticamente
+3. Os resultados estarão disponíveis na pasta `data/outputs` no seu sistema de arquivos
+
+### Conexão com Banco de Dados (Opcional)
+
+Se você precisar utilizar um banco de dados PostgreSQL externo (especialmente para o script 12), defina as variáveis de ambiente no arquivo `docker-compose.yml`:
+
+```yaml
+environment:
+  - POSTGRES_HOST=seu_host_externo
+  - POSTGRES_PORT=5432
+  - POSTGRES_DB=seu_banco
+  - POSTGRES_USER=seu_usuario
+  - POSTGRES_PASSWORD=sua_senha
 ```
-
-### Interface de Gerenciamento do Banco de Dados
-
-Um servidor PgAdmin está disponível para gerenciar o banco de dados PostgreSQL:
-
-- URL: http://localhost:5050
-- Login: admin@embrapa.br
-- Senha: admin
-
-Para conectar ao banco de dados PostgreSQL via PgAdmin:
-
-1. Acesse http://localhost:5050
-2. Faça login com as credenciais acima
-3. Clique em "Add New Server"
-4. Na aba "General", digite um nome para o servidor (ex: "LAIR PostGIS")
-5. Na aba "Connection", use os seguintes dados:
-   - Host: postgis
-   - Port: 5432
-   - Database: lair
-   - Username: postgres
-   - Password: postgres
-6. Clique em "Save"
-
-### Acessando o PostgreSQL/PostGIS
-
-O banco de dados está disponível na porta 5438:
-
-- Host: localhost
-- Porta: 5438
-- Banco: lair
-- Usuário: postgres
-- Senha: postgres
 
 ## Instalação e Execução Local (Alternativa)
 
@@ -197,7 +180,7 @@ python 01_Download_CAR_estados.py
 
 3. Para o script 01, é necessário um email válido para acesso ao sistema SICAR.
 
-4. Para o script 12, é necessário ter um servidor PostgreSQL em execução (já incluído no Docker Compose).
+4. Para o script 12, é necessário ter um servidor PostgreSQL em execução se você deseja exportar os dados para um banco de dados.
 
 5. Certifique-se de ter espaço suficiente em disco, pois os scripts processam e armazenam grandes volumes de dados geoespaciais.
 

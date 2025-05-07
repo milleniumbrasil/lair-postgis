@@ -34,21 +34,38 @@ if [ ! -f "config/config.json" ]; then
     echo -e "${BLUE}Criando arquivo de configuração exemplo...${NC}"
     cat > config/config.json << EOL
 {
-    "postgres": {
-        "host": "postgis",
-        "port": 5432,
-        "database": "lair",
-        "user": "postgres",
-        "password": "postgres"
-    },
     "paths": {
         "input": "/data/inputs",
         "output": "/data/outputs",
         "temp": "/data/temp"
+    },
+    "postgres": {
+        "host": "",
+        "port": 5432,
+        "database": "",
+        "user": "",
+        "password": ""
     }
 }
 EOL
 fi
+
+echo -e "${BLUE}Preparando arquivos de dados de exemplo...${NC}"
+# Criar arquivos README explicativos nos diretórios de dados
+cat > data/inputs/README.txt << EOL
+Diretório para arquivos de entrada.
+Coloque aqui os arquivos necessários para o processamento dos scripts.
+EOL
+
+cat > data/outputs/README.txt << EOL
+Diretório para arquivos de saída.
+Os resultados do processamento serão salvos aqui.
+EOL
+
+cat > data/temp/README.txt << EOL
+Diretório para arquivos temporários.
+Arquivos intermediários do processamento serão salvos aqui.
+EOL
 
 echo -e "${GREEN}Construindo a imagem Docker...${NC}"
 docker-compose build
@@ -56,12 +73,12 @@ docker-compose build
 echo -e "${BLUE}==================================================================${NC}"
 echo -e "${GREEN}AMBIENTE CONFIGURADO COM SUCESSO!${NC}"
 echo -e "${BLUE}==================================================================${NC}"
-echo -e "${YELLOW}Para executar todos os scripts:${NC}"
-echo "docker-compose up"
+echo -e "${YELLOW}Para executar todos os scripts em sequência:${NC}"
+echo "docker-compose up --abort-on-container-exit"
 echo -e "${YELLOW}Para executar um script específico:${NC}"
 echo "docker-compose run --rm integracao-tematica 01_Download_CAR_estados.py"
-echo -e "${YELLOW}Para acessar o shell:${NC}"
+echo -e "${YELLOW}Para acessar o shell do container:${NC}"
 echo "docker-compose run --rm integracao-tematica bash"
-echo -e "${YELLOW}Para acessar o PgAdmin:${NC}"
-echo "http://localhost:5050 (login: admin@embrapa.br, senha: admin)"
+echo -e "${BLUE}==================================================================${NC}"
+echo -e "${YELLOW}Importante:${NC} O contêiner se desligará automaticamente após concluir os scripts."
 echo -e "${BLUE}==================================================================${NC}" 
