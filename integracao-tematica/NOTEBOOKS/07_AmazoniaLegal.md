@@ -2,8 +2,6 @@
 
 **Finalidade**
 
-# Análise do Notebook Jupyter para Conversão em Script Python
-
 Este notebook realiza operações de geoprocessamento para:
 
 1. Recortar a base da Amazônia Legal por estados
