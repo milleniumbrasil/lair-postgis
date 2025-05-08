@@ -1,14 +1,44 @@
 version: "3.9"
 
 services:
-  jupyter:
-    image: jupyter/scipy-notebook:latest
-    ports:
-      - "8888:8888"
+  # Serviço para execução em batch (não-interativo)
+  notebook-runner:
+    build:
+      context: .
+      dockerfile: NotebooksDockerfile
     volumes:
-      - ./notebooks:/home/jovyan/work
-      - ./data:/home/jovyan/data
+      - ./:/home/jovyan/work
+      - ./input:/home/jovyan/data/input
+      - ./output:/home/jovyan/data/output
     environment:
-      - NB_UID=1000
       - INPUT_PATH=/home/jovyan/data/input
       - OUTPUT_PATH=/home/jovyan/data/output
+      - PYTHONUNBUFFERED=1
+    command: python run_notebooks.py
+    profiles:
+      - batch
+
+  # Serviço para execução interativa
+  jupyter-interactive:
+    build:
+      context: .
+      dockerfile: NotebooksDockerfile
+    volumes:
+      - ./:/home/jovyan/work
+      - ./input:/home/jovyan/data/input
+      - ./output:/home/jovyan/data/output
+    environment:
+      - INPUT_PATH=/home/jovyan/data/input
+      - OUTPUT_PATH=/home/jovyan/data/output
+      - PYTHONUNBUFFERED=1
+    ports:
+      - "8888:8888"
+    command: jupyter notebook --ip=0.0.0.0 --allow-root --NotebookApp.token=''
+    profiles:
+      - interactive
+
+# Para executar em modo batch:
+# docker-compose -f NotebooksCompose.yaml --profile batch up
+
+# Para executar em modo interativo:
+# docker-compose -f NotebooksCompose.yaml --profile interactive up
