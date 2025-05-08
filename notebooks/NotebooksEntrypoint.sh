@@ -17,6 +17,7 @@ cd /home/jovyan/work
 python patch_notebooks_inputs.py
 
 NOTEBOOKS=(
+  "01_Download_CAR_estados.ipynb"
   "02_UsosABC.ipynb"
   "03_Declividade.ipynb"
   "04_CorrecaoEdafo.ipynb"
