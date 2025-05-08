@@ -1,0 +1,11 @@
+FROM jupyter/scipy-notebook:latest
+
+USER root
+RUN pip install papermill geopandas rasterio psycopg2-binary geoalchemy2
+
+WORKDIR /home/jovyan/work
+COPY notebooks/ ./notebooks/
+COPY entrypoint.sh ./entrypoint.sh
+RUN chmod +x entrypoint.sh
+
+ENTRYPOINT ["./entrypoint.sh"]
