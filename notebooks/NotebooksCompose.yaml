@@ -35,6 +35,10 @@ services:
       - TEMP_FOLDER=Temporarios
       - DECLIV_OUTPUT=Decliv_UF_Municipios
       - DECLIV_CAR_OUTPUT=Decliv_UF_Municipios_CAR
+      
+      # Variáveis para o notebook 04_CorrecaoEdafo.ipynb
+      - APTIDAO_PATH=originais_path
+      - APTIDAO_OUTPUT=Aptidao_Solo_Corrigida
     command: python run_notebooks.py
     profiles:
       - batch
@@ -73,6 +77,10 @@ services:
       - TEMP_FOLDER=Temporarios
       - DECLIV_OUTPUT=Decliv_UF_Municipios
       - DECLIV_CAR_OUTPUT=Decliv_UF_Municipios_CAR
+      
+      # Variáveis para o notebook 04_CorrecaoEdafo.ipynb
+      - APTIDAO_PATH=originais_path
+      - APTIDAO_OUTPUT=Aptidao_Solo_Corrigida
     ports:
       - "8888:8888"
     command: jupyter notebook --ip=0.0.0.0 --allow-root --NotebookApp.token=''
