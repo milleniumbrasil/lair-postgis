@@ -5,7 +5,7 @@ services:
   notebook-runner:
     build:
       context: .
-      dockerfile: NotebooksDockerfile
+      dockerfile: Dockerfile
     volumes:
       - ./:/home/jovyan/work
       - ./input:/home/jovyan/data/input
