@@ -23,6 +23,9 @@ notebooks = [
     "07_AmazoniaLegal.ipynb",
     "08_FaixaFronteira.ipynb",
     "09_UCPI.ipynb",
+    "10_IntegracoesCAR.ipynb",
+    "11_AdequarParaBancoDados.ipynb",
+    "12_To_PostGis.ipynb",
     # Adicione os demais notebooks conforme necessário
 ]
 
