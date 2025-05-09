@@ -26,7 +26,6 @@ notebooks = [
     "10_IntegracoesCAR.ipynb",
     "11_AdequarParaBancoDados.ipynb",
     "12_To_PostGis.ipynb",
-    # Adicione os demais notebooks conforme necessário
 ]
 
 # Diretório de trabalho
