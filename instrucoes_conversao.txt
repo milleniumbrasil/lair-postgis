@@ -1,0 +1,1 @@
+Código Python com variáveis de ambiente criado. Para converter este código Python em um notebook Jupyter, você pode usar as instruções a seguir:
