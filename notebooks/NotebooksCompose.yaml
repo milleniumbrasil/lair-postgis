@@ -39,6 +39,11 @@ services:
       # Variáveis para o notebook 04_CorrecaoEdafo.ipynb
       - APTIDAO_PATH=originais_path
       - APTIDAO_OUTPUT=Aptidao_Solo_Corrigida
+      
+      # Variáveis para o notebook 05_AptdEdafo.ipynb
+      - APTIDAO_CORRIGIDA_PATH=Aptidao_Solo_Corrigida
+      - APTIDAO_MUN_OUTPUT=Aptd_Edafo_Municipios
+      - APTIDAO_CAR_OUTPUT=Aptd_Edafo_Municipios_CAR
     command: python run_notebooks.py
     profiles:
       - batch
@@ -81,6 +86,11 @@ services:
       # Variáveis para o notebook 04_CorrecaoEdafo.ipynb
       - APTIDAO_PATH=originais_path
       - APTIDAO_OUTPUT=Aptidao_Solo_Corrigida
+      
+      # Variáveis para o notebook 05_AptdEdafo.ipynb
+      - APTIDAO_CORRIGIDA_PATH=Aptidao_Solo_Corrigida
+      - APTIDAO_MUN_OUTPUT=Aptd_Edafo_Municipios
+      - APTIDAO_CAR_OUTPUT=Aptd_Edafo_Municipios_CAR
     ports:
       - "8888:8888"
     command: jupyter notebook --ip=0.0.0.0 --allow-root --NotebookApp.token=''
