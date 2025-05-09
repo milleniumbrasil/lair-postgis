@@ -60,6 +60,12 @@ services:
       - FAIXA_FILE=Faixa_Fronteira_2021.shp
       - FAIXA_ESTADOS_OUTPUT=Faixa_Front_Estados
       - FAIXA_MUNICIPIOS_OUTPUT=Faixa_Front_Municipios
+      
+      # Variáveis para o notebook 09_UCPI.ipynb
+      - UCPI_PATH=unidades
+      - UCPI_FILE=unidades_conservacao.shp
+      - UCPI_ESTADOS_OUTPUT=UCPI_Estados
+      - UCPI_MUNICIPIOS_OUTPUT=UCPI_Municipios
     command: python run_notebooks.py
     profiles:
       - batch
@@ -123,6 +129,12 @@ services:
       - FAIXA_FILE=Faixa_Fronteira_2021.shp
       - FAIXA_ESTADOS_OUTPUT=Faixa_Front_Estados
       - FAIXA_MUNICIPIOS_OUTPUT=Faixa_Front_Municipios
+      
+      # Variáveis para o notebook 09_UCPI.ipynb
+      - UCPI_PATH=unidades
+      - UCPI_FILE=unidades_conservacao.shp
+      - UCPI_ESTADOS_OUTPUT=UCPI_Estados
+      - UCPI_MUNICIPIOS_OUTPUT=UCPI_Municipios
     ports:
       - "8888:8888"
     command: jupyter notebook --ip=0.0.0.0 --allow-root --NotebookApp.token=''
