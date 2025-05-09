@@ -54,6 +54,12 @@ services:
       - AMZ_FILE=amazonia_legal.shp
       - AMZ_ESTADOS_OUTPUT=Amz_Legal_Estados
       - AMZ_MUNICIPIOS_OUTPUT=Amz_Legal_Municipios
+      
+      # Variáveis para o notebook 08_FaixaFronteira.ipynb
+      - FAIXA_PATH=FaixaFronteira
+      - FAIXA_FILE=Faixa_Fronteira_2021.shp
+      - FAIXA_ESTADOS_OUTPUT=Faixa_Front_Estados
+      - FAIXA_MUNICIPIOS_OUTPUT=Faixa_Front_Municipios
     command: python run_notebooks.py
     profiles:
       - batch
@@ -111,6 +117,12 @@ services:
       - AMZ_FILE=amazonia_legal.shp
       - AMZ_ESTADOS_OUTPUT=Amz_Legal_Estados
       - AMZ_MUNICIPIOS_OUTPUT=Amz_Legal_Municipios
+      
+      # Variáveis para o notebook 08_FaixaFronteira.ipynb
+      - FAIXA_PATH=FaixaFronteira
+      - FAIXA_FILE=Faixa_Fronteira_2021.shp
+      - FAIXA_ESTADOS_OUTPUT=Faixa_Front_Estados
+      - FAIXA_MUNICIPIOS_OUTPUT=Faixa_Front_Municipios
     ports:
       - "8888:8888"
     command: jupyter notebook --ip=0.0.0.0 --allow-root --NotebookApp.token=''
