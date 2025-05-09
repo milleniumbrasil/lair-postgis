@@ -44,6 +44,11 @@ services:
       - APTIDAO_CORRIGIDA_PATH=Aptidao_Solo_Corrigida
       - APTIDAO_MUN_OUTPUT=Aptd_Edafo_Municipios
       - APTIDAO_CAR_OUTPUT=Aptd_Edafo_Municipios_CAR
+      
+      # Variáveis para o notebook 06_TerraIndigena.ipynb
+      - TI_FILE=tis_poligonais.shp
+      - TI_ESTADOS_OUTPUT=Terras_Indigenas_Estados
+      - TI_MUNICIPIOS_OUTPUT=Terras_Indigenas_Municipios
     command: python run_notebooks.py
     profiles:
       - batch
@@ -91,6 +96,11 @@ services:
       - APTIDAO_CORRIGIDA_PATH=Aptidao_Solo_Corrigida
       - APTIDAO_MUN_OUTPUT=Aptd_Edafo_Municipios
       - APTIDAO_CAR_OUTPUT=Aptd_Edafo_Municipios_CAR
+      
+      # Variáveis para o notebook 06_TerraIndigena.ipynb
+      - TI_FILE=tis_poligonais.shp
+      - TI_ESTADOS_OUTPUT=Terras_Indigenas_Estados
+      - TI_MUNICIPIOS_OUTPUT=Terras_Indigenas_Municipios
     ports:
       - "8888:8888"
     command: jupyter notebook --ip=0.0.0.0 --allow-root --NotebookApp.token=''
