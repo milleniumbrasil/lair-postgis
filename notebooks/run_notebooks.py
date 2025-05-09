@@ -20,6 +20,7 @@ notebooks = [
     "04_CorrecaoEdafo.ipynb",
     "05_AptdEdafo.ipynb",
     "06_TerraIndigena.ipynb",
+    "07_AmazoniaLegal.ipynb",
     # Adicione os demais notebooks conforme necessário
 ]
 

@@ -49,6 +49,11 @@ services:
       - TI_FILE=tis_poligonais.shp
       - TI_ESTADOS_OUTPUT=Terras_Indigenas_Estados
       - TI_MUNICIPIOS_OUTPUT=Terras_Indigenas_Municipios
+      
+      # Variáveis para o notebook 07_AmazoniaLegal.ipynb
+      - AMZ_FILE=amazonia_legal.shp
+      - AMZ_ESTADOS_OUTPUT=Amz_Legal_Estados
+      - AMZ_MUNICIPIOS_OUTPUT=Amz_Legal_Municipios
     command: python run_notebooks.py
     profiles:
       - batch
@@ -101,6 +106,11 @@ services:
       - TI_FILE=tis_poligonais.shp
       - TI_ESTADOS_OUTPUT=Terras_Indigenas_Estados
       - TI_MUNICIPIOS_OUTPUT=Terras_Indigenas_Municipios
+      
+      # Variáveis para o notebook 07_AmazoniaLegal.ipynb
+      - AMZ_FILE=amazonia_legal.shp
+      - AMZ_ESTADOS_OUTPUT=Amz_Legal_Estados
+      - AMZ_MUNICIPIOS_OUTPUT=Amz_Legal_Municipios
     ports:
       - "8888:8888"
     command: jupyter notebook --ip=0.0.0.0 --allow-root --NotebookApp.token=''
